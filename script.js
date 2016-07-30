@@ -11,6 +11,33 @@ var computerWin = [];
 
 var over = false;
 
+var documentWidth = window.screen.availWidth;
+var chessWidth = documentWidth*0.92;
+var iWidth = Math.floor(chessWidth/15);
+
+//移动端适配
+
+function prepareForMobiel(){
+
+	if(documentWidth > 500){
+		chessWidth = 450;
+		iWidth = 30
+	
+	}
+	$("#chess").css('width',chessWidth);
+	$("#chess").css('height',chessWidth);
+	
+	
+
+}
+$(document).ready(function(){
+	prepareForMobiel();
+	//console.log(documentWidth)
+	console.log(chessWidth)
+	console.log(iWidth)
+})
+
+
 
 
 //赢法
@@ -137,8 +164,11 @@ chess.onclick = function(e){
 	var e = e || window.event;
 	var x = e.offsetX;
 	var y = e.offsetY;
-	var i = Math.floor(x/30);
-	var j = Math.floor(y/30);
+	var i = Math.floor(x/iWidth);
+	var j = Math.floor(y/iWidth);
+
+	console.log(i)
+	console.log(j)
 
 	if(chessBoard[i][j] == 0){
 		oneStep(i,j,me);
